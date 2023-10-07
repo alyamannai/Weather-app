@@ -13,38 +13,42 @@
             <div id="country"></div>
             <div id="search">
 
-                <input type="text" id="location"  placeholder="Search for country"></input>
-                <button id="btn">get country weather info</button>
+                <input type="text" id="location"  placeholder="Search for city"></input>
+                <label class="switch">
+                    <input type="checkbox" id="togBtn">
+                    <div class="slider round"></div>
+                    </label>
             </div>
         </div>
         <div id="main">
             <div id="temp">
                 <div id="big">
-                    <img id='icon'src="">
-                    <p id="tempT"></p>
+                    <p id="countryT"></p>
+                    <div id="LogoT">
+                       <img id='icon'src="">
+                       <p id="tempT"></p>
+                    </div>
                 </div>
                 <div id="small">
+                    <p id="conditionText"></p>
                     <p id="feel"></p>
-                    <label class="switch">
-                        <input type="checkbox" id="togBtn">
-                        <div class="slider round"></div>
-                        </label>
+                    
                 </div>
             </div>
             <div id="extras">
-                <div>
+                <div class="extra">
                     <img src="">
                     <p id="humidityT"></p>
                 </div>
-                <div>
+                <div class="extra"> 
                     <img src="">
                     <p id="uvT"></p>
                 </div>
-                <div>
+                <div class="extra">
                     <img src="">
                     <p id="airPressureT"></p>
                 </div>
-                <div>
+                <div class="extra">
                     <img src="">
                     <p id="vis"></p>
                 </div>

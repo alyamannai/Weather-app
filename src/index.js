@@ -2,77 +2,78 @@ const apiKey = process.env.API_KEY;
 
 window.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById('btn');
-    const togBtn = document.getElementById('togBtn')
-    let iconName
-    let data 
+    let input = document.getElementById('location');
+    const togBtn = document.getElementById('togBtn');
+    let iconName;
+    let data;
 
+    input.addEventListener('keydown', async function(event) {
+        if (event.key === "Enter") {
+            async function getWeather() {
+                let location = input.value;
 
-    btn.addEventListener('click', async () => {
-      async function getWeather() {
-        
-        let location = document.querySelector('#location').value;
-  
-        try {
-          const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`);
-          data = await response.json();
-  
-          if (data.error) {
-            console.error('Error fetching weather data:', data.error.message);
-          } else {
-           
-          insertToDOM();
-          }
-        } catch (error) {
-          console.error('Error fetching weather data:', error);
+                try {
+                    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`);
+                    data = await response.json();
+
+                    if (data.error) {
+                        console.error('Error fetching weather data:', data.error.message);
+                    } else {
+                        insertToDOM();
+                        unhideExtra();
+                    }
+                } catch (error) {
+                    console.error('Error fetching weather data:', error);
+                }
+            }
+
+            getWeather(); // Call the getWeather function when Enter is pressed
         }
-      }
-  
-      getWeather();
-      
-      function insertToDOM(){
+    });
+
+    function insertToDOM() {
         if (!data) return;
 
-        const humidity = data.current.humidity
-        const airPressure = data.current.pressure_mb
-        const uv = data.current.uv
-        const visi = data.current.vis_km
-        const wText = data.current.condition.text
-        
+        const humidity = data.current.humidity;
+        const airPressure = data.current.pressure_mb;
+        const uv = data.current.uv;
+        const visi = data.current.vis_km;
+        const wText = data.current.condition.text;
+        const country = data.location.name;
 
-        vis.textContent =  visi;
-        humidityT.textContent = humidity;
-        uvT.textContent = uv
-        airPressureT.textContent= airPressure
-        
+        vis.textContent =  "visibility: "+visi+"km";
+        humidityT.textContent ="humidity: " +humidity;
+        uvT.textContent = "uv: " +uv;
+        airPressureT.textContent= "air pressure: "+airPressure+"hPa";
+        countryT.textContent=country;
+        conditionText.textContent=wText;
 
         checkUnitTemp();
-        getWeatherIcon()
+        getWeatherIcon();
 
-        icon.src = "../src/"+iconName
-       
-      }
+        icon.src = "../src/"+iconName;
+    }
 
-      function checkUnitTemp(){
+    function checkUnitTemp() {
         if(!data) return;
         const temperatureC = data.current.temp_c;
-        const feelLikeC = data.current.feelslike_c
-        const feelikeF = data.current.feelslike_f
+        const feelLikeC = data.current.feelslike_c;
+        const feelikeF = data.current.feelslike_f;
         const temperatureF = data.current.temp_f;
 
         if(togBtn.checked===true){
-          tempT.textContent = temperatureF+ "F"
-          feel.textContent=feelikeF+"F"
-
+            tempT.textContent = temperatureF+ "°";
+            feel.textContent="feels like: "+feelikeF+"°";
         }
         else{
-          tempT.textContent = temperatureC + "C"
-          feel.textContent= feelLikeC+"C"
+            tempT.textContent = temperatureC + "°";
+            feel.textContent= "feels like: "+feelLikeC+"°";
         }
-      }
+    }
 
-      function getWeatherIcon(){
+    function getWeatherIcon() {
         if(!data) return;
-        const wIcon = data.current.condition.icon
+        const wIcon = data.current.condition.icon;
 
         const parts = wIcon.split('/');
         if (parts.length >= 4) {
@@ -80,14 +81,21 @@ window.addEventListener("DOMContentLoaded", () => {
         } else {
             console.error('Invalid icon URL:', wIcon);
         }
+    }
 
-      }
-     
-     
-      togBtn.addEventListener('change',()=>{
+    function unhideExtra() {
+        let extra = document.querySelectorAll('.extra');
+        extra.forEach(extra =>{
+            extra.style.visibility = "visible";
+
+            let small = document.getElementById('small');
+            small.style.visibility = "visible";
+        });
+    }
+
+    togBtn.addEventListener('change', () => {
         checkUnitTemp();
-      })
-
     });
-  });
+});
+
   

@@ -1,3 +1,87 @@
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-image: url(weather/backgroundImage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center; 
+  background-attachment: fixed;
+}
+
+#container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  gap:3rem;
+  flex-wrap: wrap;
+}
+#search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main{
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center;
+  gap:3rem;
+}
+
+
+#big{
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center;
+  
+}
+#small{
+  background-color: #284f61;
+  opacity: 70%;
+  color: aliceblue;
+  border:#283144  solid 0.2rem;
+  visibility: hidden;
+}
+#countryT{
+  font-weight: bolder;
+  font-size: 3rem;
+}
+#LogoT{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:2rem;
+}
+
+#tempT{
+  text-align: center;
+  font-weight: bolder;
+  font-size: 4rem;
+}
+
+#extras{
+  display: grid;
+  grid-template-columns: repeat(2, 7rem);
+  grid-template-rows: repeat(2, 7rem);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  
+
+}
+.extra{
+  border:#283144  solid 0.2rem;
+  border-radius:0.5rem ;
+  background-color: #284f61;
+  opacity: 70%;
+  color: aliceblue;
+  visibility: hidden;
+
+}
+
 .switch {
     position: relative;
     display: inline-block;
@@ -50,7 +134,7 @@
   /*------ ADDED CSS ---------*/
   .slider:after
   {
-   content:'C';
+   content:' C';
    color: white;
    display: block;
    position: absolute;
