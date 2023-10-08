@@ -16,6 +16,7 @@ body{
   align-items:center;
   gap:3rem;
   flex-wrap: wrap;
+  
 }
 #search{
   display: flex;
@@ -29,6 +30,9 @@ body{
   justify-content: center;
   align-items: center;
   gap:3rem;
+  border:#283144  solid 0.2rem;
+  border-radius:0.5rem ;
+  visibility: hidden;
 }
 
 
@@ -44,6 +48,7 @@ body{
   opacity: 70%;
   color: aliceblue;
   border:#283144  solid 0.2rem;
+  text-align: center;
   visibility: hidden;
 }
 #countryT{
@@ -69,10 +74,15 @@ body{
   grid-template-rows: repeat(2, 7rem);
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+  margin: 2rem;
   
 
 }
 .extra{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   border:#283144  solid 0.2rem;
   border-radius:0.5rem ;
   background-color: #284f61;
@@ -80,6 +90,12 @@ body{
   color: aliceblue;
   visibility: hidden;
 
+}
+
+#location{
+  background-color: #283144;
+  color: white;
+  border-radius: 0.3rem;
 }
 
 .switch {
@@ -92,6 +108,7 @@ body{
   .switch input {display:none;}
   
   .slider {
+
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -131,7 +148,7 @@ body{
     transform: translateX(55px);
   }
   
-  /*------ ADDED CSS ---------*/
+
   .slider:after
   {
    content:' C';
@@ -148,4 +165,9 @@ body{
   input:checked + .slider:after
   {  
     content:'F';
+  }
+
+  .huav{
+    height: 3rem;
+    width: auto;
   }
